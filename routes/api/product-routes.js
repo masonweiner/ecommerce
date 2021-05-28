@@ -28,10 +28,7 @@ router.get("/:id", async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
       // JOIN with locations, using the Trip through table
-      include: [
-        { model: Category },
-        { model: Tag, through: ProductTag, as: "product_tags" },
-      ],
+      include: [{ model: Category }, { model: Tag }],
     });
 
     if (!productData) {
